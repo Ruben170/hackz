@@ -186,55 +186,55 @@ function cripple_window(_window) {
             // target selector - based on closest to aim
             let closest = null, closestAngle = Infinity;
             let players = world.players.list;
-            for (var i = 0; me.active && i < players.length; i++) {
-                let e = players[i];
-                if (e[isYou] || !e.active || !e[objInstances] || !isEnemy(e)) {
-                    continue;
-                }
+            // for (var i = 0; me.active && i < players.length; i++) {
+            //     let e = players[i];
+            //     if (e[isYou] || !e.active || !e[objInstances] || !isEnemy(e)) {
+            //         continue;
+            //     }
 
-                // experimental prediction removed
-                e.x3 = e.x;
-                e.y3 = e.y;
-                e.z3 = e.z;
+            //     // experimental prediction removed
+            //     e.x3 = e.x;
+            //     e.y3 = e.y;
+            //     e.z3 = e.z;
 
-                if (!isCloseEnough(e) || !canHit(e)) {
-                    continue;
-                }
+            //     if (!isCloseEnough(e) || !canHit(e)) {
+            //         continue;
+            //     }
 
-                let angle = calcAngleTo(e);
-                if (angle < closestAngle) {
-                    closestAngle = angle;
-                    closest = e;
-                }
-            }
+            //     let angle = calcAngleTo(e);
+            //     if (angle < closestAngle) {
+            //         closestAngle = angle;
+            //         closest = e;
+            //     }
+            // }
             // aimbot
-            let ty = controls.object.rotation.y, tx = controls[pchObjc].rotation.x;
-            if (closest) {
-                let target = closest;
-                let y = target.y3 + playerHeight - (headScale/* + hitBoxPad*/) / 2 - target.crouchVal * crouchDst;
-                if (me.weapon.nAuto && me.didShoot) {
-                    inputs[SHOOT] = 0;
-                } else if (!me.aimVal) {
-                    inputs[SHOOT] = 1;
-                    inputs[SCOPE] = 1;
-                } else {
-                    inputs[SCOPE] = 1;
-                }
+            // let ty = controls.object.rotation.y, tx = controls[pchObjc].rotation.x;
+            // if (closest) {
+            //     let target = closest;
+            //     let y = target.y3 + playerHeight - (headScale/* + hitBoxPad*/) / 2 - target.crouchVal * crouchDst;
+            //     if (me.weapon.nAuto && me.didShoot) {
+            //         inputs[SHOOT] = 0;
+            //     } else if (!me.aimVal) {
+            //         inputs[SHOOT] = 1;
+            //         inputs[SCOPE] = 1;
+            //     } else {
+            //         inputs[SCOPE] = 1;
+            //     }
 
-                ty = getDir(controls.object.position.z, controls.object.position.x, target.z3, target.x3);
-                tx = getXDire(controls.object.position.x, controls.object.position.y, controls.object.position.z, target.x3, y, target.z3);
+            //     ty = getDir(controls.object.position.z, controls.object.position.x, target.z3, target.x3);
+            //     tx = getXDire(controls.object.position.x, controls.object.position.y, controls.object.position.z, target.x3, y, target.z3);
 
-                // perfect recoil control
-                tx -= .3 * me[recoilAnimY];
-            } else {
-                inputs[SHOOT] = controls[mouseDownL];
-                inputs[SCOPE] = controls[mouseDownR];
-            }
+            //     // perfect recoil control
+            //     tx -= .3 * me[recoilAnimY];
+            // } else {
+            //     inputs[SHOOT] = controls[mouseDownL];
+            //     inputs[SCOPE] = controls[mouseDownR];
+            // }
 
 
             // silent aim
-            inputs[xDr] = +(tx % PI2).toFixed(3);
-            inputs[yDr] = +(ty % PI2).toFixed(3);
+            // inputs[xDr] = +(tx % PI2).toFixed(3);
+            // inputs[yDr] = +(ty % PI2).toFixed(3);
 
             // auto reload
             controls.keys[controls.reloadKey] = !haveAmmo() * 1;
@@ -356,14 +356,14 @@ function cripple_window(_window) {
 
                         // skelly chams
                         // note: this can be done better
-                        if (e.legMeshes[0]) {
-                            let material = e.legMeshes[0].material;
-                            material.alphaTest = 1;
-                            material.depthTest = false;
-                            material.fog = false;
-                            material.emissive.g = 1;
-                            material.wireframe = true;
-                        }
+                        // if (e.legMeshes[0]) {
+                        //     let material = e.legMeshes[0].material;
+                        //     material.alphaTest = 1;
+                        //     material.depthTest = false;
+                        //     material.fog = false;
+                        //     material.emissive.g = 1;
+                        //     material.wireframe = true;
+                        // }
 
                     }
                 };
